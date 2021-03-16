@@ -5,26 +5,48 @@
 4. Use import '../BasicDependencies/ReUsableWidgets.dart'; in pages where toast is used.
 */
 import 'package:flutter/material.dart';
-textViewer(text,mode) {
+
+textViewer(text,
+    {
+      margin,
+      padding,
+      containerColor,
+      borderColor,
+      borderRadius,
+      textOpacity,
+      textColor,
+      fontSize,
+      fontWeight,
+      fontStyle,
+      letterSpacing
+    }) {
   return Container(
     alignment: Alignment.centerLeft,
-    margin: EdgeInsets.only(top: 10),
+    margin: margin == null ? EdgeInsets.fromLTRB(20, 20, 20, 0) : margin,
     height: 40,
-    padding: EdgeInsets.only(left: 15),
+    padding: padding == null ? EdgeInsets.only(left: 15, right: 20) : padding,
     decoration: BoxDecoration(
+        color:containerColor==null?Colors.transparent:containerColor,
         border: Border.all(
-          color: Colors.blueGrey[100],
+          color: borderColor == null ? Colors.blueGrey[100] : borderColor,
         ),
-        borderRadius: BorderRadius.circular(3)),
-    child: Text(
-      text,
-      style: TextStyle(
-        fontFamily: 'Roboto',
-        color: Color(0xff676767).withOpacity(mode ? 1.0 : 0.5),
-        fontSize: 12,
-        fontWeight: FontWeight.w400,
-        fontStyle: FontStyle.normal,
-        letterSpacing: 0,
+        borderRadius:
+        borderRadius == null ? BorderRadius.circular(3) : borderRadius),
+    child: SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Text(
+        text,
+        style: TextStyle(
+          fontFamily: 'Roboto',
+          color: textColor == null
+              ? Color(0xff676767)
+              .withOpacity(textOpacity == null ? 1.0 : textOpacity)
+              : textColor.withOpacity(textOpacity == null ? 1.0 : textOpacity),
+          fontSize: fontSize == null ? 12 : fontSize,
+          fontWeight: fontWeight == null ? FontWeight.w400 : fontWeight,
+          fontStyle: fontStyle == null ? FontStyle.normal : fontStyle,
+          letterSpacing: letterSpacing == null ? 0 : letterSpacing,
+        ),
       ),
     ),
   );

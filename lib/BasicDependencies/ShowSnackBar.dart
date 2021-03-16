@@ -5,6 +5,7 @@
 */
 
 import 'package:flutter/material.dart';
+
 showSnackBar(context, text, {color, duration, key}) {
   final snackBar = SnackBar(
     key: key,
